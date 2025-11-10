@@ -1,5 +1,4 @@
 <script setup lang=ts>
-import { ref } from 'vue';
 import AddTodo from './components/AddTodo.vue';
 import { useTodosStore } from './store/todos';
 
@@ -21,6 +20,7 @@ const todoStore = useTodosStore();
           <span :style="{ textDecoration: todo.completed ? 'line-through' : 'none' }">
             {{ todo.title }}
           </span>
+          <button v-on:click="todoStore.removeTodo(todo.id)">Delete</button>
         </li>
       </ul>
     </section>

@@ -27,9 +27,15 @@ export const useTodosStore = defineStore('todos', () => {
         todos.value.push(newTodo)
     }
 
+    // TODOを削除する
+    const removeTodo = (id: number) => {
+        todos.value = todos.value.filter(todo => todo.id !== id)
+    }
+
     return {
         todos,
         addTodo,
+        removeTodo,
     }
 
 })
