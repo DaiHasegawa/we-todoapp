@@ -1,19 +1,16 @@
 <script setup lang=ts>
 import { ref } from 'vue';
+import { useTodosStore } from '../store/todos';
 
-const name = ref('Vue 3 with TypeScript');
+const todoStore = useTodosStore();
 
-type Todo = { id: number; title: string; completed: boolean };
-
-const todos = defineModel<Todo[]>("todos");
-
-const newTitle = ref('');
-// compute next id from existing todos
-const nextId = ref(Math.max(0, ...todos.value.map((t) => t.id)) + 1);
+// component内での双方向バインディングなのでrefを使う
+// defineModel()はv-modelをコンポーネント外に公開するためのもの
+const newTitle = ref<string>(''); 
 
 function addTodo() {
   const title = newTitle.value;
-  todos.value.push({ id: nextId.value++, title, completed: false });
+  todoStore.addTodo(title);
   newTitle.value = '';
 }
 
@@ -25,7 +22,6 @@ function addTodo() {
     <input
         v-model="newTitle"
         placeholder="New todo title"
-        aria-label="New todo title"
     />
     <button v-on:click="addTodo" :disabled="!newTitle">Add</button>
 </div>
