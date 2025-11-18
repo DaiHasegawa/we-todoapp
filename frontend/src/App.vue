@@ -1,31 +1,31 @@
 <script setup lang=ts>
-import AddTodo from './components/AddTodo.vue';
-import { useTodosStore } from './store/todos';
-
-// get todos from Pinia store
-const todoStore = useTodosStore();
+import { RouterView, RouterLink } from 'vue-router';
 </script>
 
 <template>
   <div id="app">
-    <section class="todo-app">
-      <h2>Todos</h2>
+    <header>
+      <h1>Todo App</h1>
+    </header>
+    
+    <main id="main-content">
+      <router-view />
+    </main>
+    
+    <footer>
       <ul>
-        <li
-          v-for="todo in todoStore.todos"
-          :key="todo.id"
-          style="display:flex; align-items:center; gap:0.5rem; margin:0.25rem 0;"
-        >
-          <input type="checkbox" v-model="todo.completed" />
-          <span :style="{ textDecoration: todo.completed ? 'line-through' : 'none' }">
-            {{ todo.title }}
-          </span>
-          <button v-on:click="todoStore.removeTodo(todo.id)">Delete</button>
-        </li>
+        <li><router-link to="/">Todo List</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
       </ul>
-    </section>
-    <section>
-      <AddTodo />
-    </section>
+    </footer>
   </div>
+  
 </template>
+
+<style scoped>
+  #main-content {
+    padding: 1rem;
+    border-style: solid;
+    border-width: 2px;
+  }
+</style>

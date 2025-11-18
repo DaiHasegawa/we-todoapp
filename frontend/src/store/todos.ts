@@ -17,6 +17,11 @@ export const useTodosStore = defineStore('todos', () => {
         { id: 3, title: 'Call Alice', completed: false },
     ])
 
+    // TODOを取得する
+    const getTodoById = (id: number) => {
+        return todos.value.find(todo => todo.id === id);
+    }
+
     // TODOを追加する
     const addTodo = (title: string) => {
         const newTodo: Todo = {
@@ -36,6 +41,7 @@ export const useTodosStore = defineStore('todos', () => {
         todos,
         addTodo,
         removeTodo,
+        getTodoById
     }
 
 })
