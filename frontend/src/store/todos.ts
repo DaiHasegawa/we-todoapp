@@ -24,6 +24,7 @@ export const useTodosStore = defineStore('todos', () => {
 
     // TODOを取得する
     const getTodoById = (id: number) => {
+        console.log(todos.value);
         return todos.value.find(todo => todo.id === id);
     }
 

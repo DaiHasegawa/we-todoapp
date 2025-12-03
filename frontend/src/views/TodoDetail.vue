@@ -6,7 +6,6 @@ import { useRoute } from 'vue-router';
 const $route = useRoute();
 const todosStore = useTodosStore();
 const todo = computed(() => todosStore.getTodoById(Number($route.params.id)));
-
 </script>
 
 <template>
