@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { useTodosStore } from '../store/todos';
 import { RouterLink } from 'vue-router';
+import { onMounted } from 'vue'
+import AddTodo from '../components/AddTodo.vue'
 
 const todoStore = useTodosStore();
+
+onMounted(() => {
+    todoStore.fetchTodos();
+});
+
 </script>
 
 <template>
